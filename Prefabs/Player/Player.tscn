@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Sprites/Legs/Legs_north_east-2.tres" type="Texture" id=1]
+[ext_resource path="res://Sprites/Legs/Legs_north-1.tres" type="Texture" id=2]
+[ext_resource path="res://Sprites/Legs/Legs_north_east-3.tres" type="Texture" id=3]
+[ext_resource path="res://Sprites/Legs/Legs_north-2.tres" type="Texture" id=4]
+[ext_resource path="res://Sprites/Legs/Legs_north-3.tres" type="Texture" id=5]
+[ext_resource path="res://Sprites/Legs/Legs_north-4.tres" type="Texture" id=6]
+[ext_resource path="res://Sprites/Legs/Legs_north_east-4.tres" type="Texture" id=7]
+[ext_resource path="res://Sprites/Legs/Legs_north_east-1.tres" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 4.5 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 30.0
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "East",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "North",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "North-East",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "North-West",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "South",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "South-East",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "South-West",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "West",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10.5 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -10 )
+shape = SubResource( 2 )
+
+[node name="Legs" type="Node2D" parent="."]
+
+[node name="Legs_sprite" type="AnimatedSprite" parent="Legs"]
+frames = SubResource( 3 )
+animation = "North"
+
+[node name="Torso" type="Node2D" parent="."]
