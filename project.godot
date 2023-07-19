@@ -10,12 +10,36 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Scripts/Weapons/Projectiles/Bullet.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerTorso",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerTorso.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerWeaponHandler",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerWeaponHandler.gd"
+}, {
+"base": "Node2D",
+"class": "SimpleGun",
+"language": "GDScript",
+"path": "res://Scripts/Weapons/Guns/SimpleGun.gd"
 } ]
 _global_script_class_icons={
-"Player": ""
+"Bullet": "",
+"Player": "",
+"PlayerTorso": "",
+"PlayerWeaponHandler": "",
+"SimpleGun": ""
 }
 
 [application]
@@ -28,12 +52,12 @@ config/icon="res://icon.png"
 
 window/size/width=320
 window/size/height=224
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/sprite_trail/plugin.cfg" )
 
 [gui]
 

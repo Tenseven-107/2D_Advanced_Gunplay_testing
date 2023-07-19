@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/Weapons/Projectiles/Projectile-01.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Weapons/Projectiles/Bullet.gd" type="Script" id=2]
+[ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 4.12311
+
+[sub_resource type="Gradient" id=4]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.148148, 0.529101, 1 )
+colors = PoolColorArray( 0.945098, 0.392157, 0.121569, 1, 0.972549, 0.772549, 0.227451, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="Curve" id=2]
+max_value = 2.25
+_data = [ Vector2( 0, 0 ), 0.0, 5.78182, 0, 0, Vector2( 1, 2.25 ), -0.0818186, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.461538, 0.680473, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.941176, 0.537255, 1, 0.972549, 0.772549, 0.227451, 1, 0.972549, 0.772549, 0.227451, 1 )
+
+[node name="Bullet" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 2 )
+trail_length = 10
+speed = 675
+dropoff_time = 2.0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 1 )
+
+[node name="SpriteTrail" type="Node2D" parent="Sprite"]
+show_behind_parent = true
+script = ExtResource( 3 )
+active = true
+life_time = 0.05
+copy_period = 0.01
+gradient = SubResource( 4 )
+
+[node name="Trail" type="Line2D" parent="."]
+z_index = 1
+width = 2.25
+width_curve = SubResource( 2 )
+default_color = Color( 0.972549, 0.772549, 0.227451, 1 )
+gradient = SubResource( 5 )
+
+[node name="Dropoff_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Collision_tween" type="Tween" parent="."]
+
+[node name="Dropoff_tween" type="Tween" parent="."]

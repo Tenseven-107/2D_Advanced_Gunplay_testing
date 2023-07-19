@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://Sprites/Player/Legs/0024.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Player/Legs/0025.png" type="Texture" id=2]
@@ -73,6 +73,34 @@
 [ext_resource path="res://Sprites/Player/Legs/0253.png" type="Texture" id=71]
 [ext_resource path="res://Sprites/Player/Legs/0258.png" type="Texture" id=72]
 [ext_resource path="res://Sprites/Player/Torso/Rifle/0001.png" type="Texture" id=73]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0103.png" type="Texture" id=74]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0105.png" type="Texture" id=75]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0196.png" type="Texture" id=76]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0195.png" type="Texture" id=77]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0131.png" type="Texture" id=78]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0132.png" type="Texture" id=79]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0181.png" type="Texture" id=80]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0104.png" type="Texture" id=81]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0133.png" type="Texture" id=82]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0225.png" type="Texture" id=83]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0180.png" type="Texture" id=84]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0226.png" type="Texture" id=85]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0227.png" type="Texture" id=86]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0032.png" type="Texture" id=87]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0033.png" type="Texture" id=88]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0034.png" type="Texture" id=89]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0071.png" type="Texture" id=90]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0072.png" type="Texture" id=91]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0073.png" type="Texture" id=92]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0179.png" type="Texture" id=93]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0003.png" type="Texture" id=94]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0002.png" type="Texture" id=95]
+[ext_resource path="res://Sprites/Player/Torso/Rifle/0197.png" type="Texture" id=96]
+[ext_resource path="res://Scripts/Player/PlayerTorso.gd" type="Script" id=97]
+[ext_resource path="res://Scripts/Weapons/Guns/SimpleGun.gd" type="Script" id=98]
+[ext_resource path="res://Scripts/Player/PlayerWeaponHandler.gd" type="Script" id=99]
+[ext_resource path="res://Prefabs/Weapons/Projectiles/Bullet.tscn" type="PackedScene" id=100]
+[ext_resource path="res://Scripts/Utility/Hitbox.gd" type="Script" id=101]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 4.5 )
@@ -91,10 +119,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 13 ) ]
+"values": [ ExtResource( 21 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 23 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -359,6 +387,334 @@ tracks/0/keys = {
 "values": [ ExtResource( 20 ) ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "idle-1"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 93 ), ExtResource( 84 ), ExtResource( 80 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -45 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "idle-2"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 74 ), ExtResource( 81 ), ExtResource( 75 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -45 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "idle-3"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 73 ), ExtResource( 95 ), ExtResource( 94 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, -52 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "idle-4"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 77 ), ExtResource( 76 ), ExtResource( 96 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, -53 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "idle-5"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 78 ), ExtResource( 79 ), ExtResource( 82 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -52 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -90.0 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "idle-6"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 83 ), ExtResource( 85 ), ExtResource( 86 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -52 ), Vector2( 0, -51 ), Vector2( 0, -52 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -135.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "idle-7"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -6, -55 ), Vector2( -5, -55 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -180.0 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "idle-8"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso_sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 90 ), ExtResource( 91 ), ExtResource( 92 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2, -49 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 135.0 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 24 )
 
@@ -367,6 +723,9 @@ position = Vector2( 0, 10.5 )
 shape = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 101 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -10 )
@@ -400,9 +759,48 @@ anims/idle-7 = SubResource( 18 )
 anims/idle-8 = SubResource( 19 )
 
 [node name="Torso" type="Node2D" parent="."]
+script = ExtResource( 97 )
 
 [node name="Torso_sprite" type="Sprite" parent="Torso"]
-position = Vector2( 5, -52 )
-texture = ExtResource( 73 )
+position = Vector2( 0, -45 )
+texture = ExtResource( 93 )
 
 [node name="Torso_anims" type="AnimationPlayer" parent="Torso"]
+playback_speed = 0.5
+anims/idle-1 = SubResource( 21 )
+anims/idle-2 = SubResource( 22 )
+anims/idle-3 = SubResource( 23 )
+anims/idle-4 = SubResource( 24 )
+anims/idle-5 = SubResource( 25 )
+anims/idle-6 = SubResource( 26 )
+anims/idle-7 = SubResource( 27 )
+anims/idle-8 = SubResource( 28 )
+
+[node name="Weapon" type="Node2D" parent="Torso"]
+position = Vector2( 0, -13 )
+script = ExtResource( 99 )
+
+[node name="SimpleGun" type="Node2D" parent="Torso/Weapon" groups=["Guns"]]
+rotation = 1.5708
+script = ExtResource( 98 )
+projectile = ExtResource( 100 )
+
+[node name="Muzzle" type="Position2D" parent="Torso/Weapon/SimpleGun"]
+position = Vector2( 18, 0 )
+
+[node name="Reload_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
+one_shot = true
+
+[node name="Heat_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
+one_shot = true
+
+[node name="Firerate_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
+one_shot = true
+
+[node name="Bullet_couner" type="Label" parent="Torso/Weapon"]
+margin_left = -8.0
+margin_top = 29.0
+margin_right = 8.0
+margin_bottom = 43.0
+text = "31"
+align = 1
