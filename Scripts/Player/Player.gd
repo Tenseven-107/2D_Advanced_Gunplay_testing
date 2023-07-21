@@ -4,7 +4,9 @@ class_name Player
 
 
 # Combat objects
-onready var hitbox = $Entity
+onready var hitbox: Entity = $Entity
+onready var weaponry: PlayerWeaponHandler = $Torso/Weapon
+var bullet_container = null
 
 # Animations
 onready var anims = $Legs/Leg_anims
@@ -19,12 +21,8 @@ var velocity: Vector2 = Vector2.ZERO
 
 # Misc
 onready var cam_transform = $Cam_transform
+var fx_container = null
 
-
-
-# Setup
-func _ready():
-	pass
 
 
 # Processes
@@ -87,9 +85,23 @@ func animation_loop():
 
 
 
+# Equip a new weapon
+func equip(weapon: PackedScene):
+	weaponry.add_weapon(weapon)
+
+func check_available():
+	var check: bool = weaponry.is_available()
+	return check
+
+
+
 # Initialization
-func initialize(camera: Camera2D, bullet_container: Node):
+func initialize(camera: Camera2D, bullet_cont: Node, fx_cont: Node):
 	cam_transform.remote_path = camera.get_path()
+	bullet_container = bullet_cont
+	fx_container = fx_cont
+
+	weaponry.initialize(bullet_container, fx_container)
 
 
 

@@ -87,7 +87,9 @@ func handle_hit(damage, damager_team, fx_rot):
 
 			parent.call_deferred("queue_free")
 
-		if is_instance_valid(animator): animator.play(damage_animation)
+		if is_instance_valid(animator): 
+			animator.stop()
+			animator.play(damage_animation)
 		if camera_shake: GlobalSignals.emit_signal("camera_shake", new_cam_shake, cam_shake_time, cam_shake_limit)
 		if zoom: GlobalSignals.emit_signal("camera_zoom", new_cam_zoom, cam_zoom_time, cam_zoom_limit)
 		if hitstop: GlobalSignals.emit_signal("hitstop", hitstop_time)

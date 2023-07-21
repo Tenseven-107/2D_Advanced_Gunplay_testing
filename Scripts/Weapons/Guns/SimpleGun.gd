@@ -5,6 +5,7 @@ class_name SimpleGun
 # Stats
 # - Misc
 export (int) var team: int = 0
+export (PackedScene) var pickup: PackedScene
 
 # - Projectiles
 export (PackedScene) var projectile: PackedScene
@@ -154,6 +155,12 @@ func get_ammo():
 func get_reload_progress():
 	var reload_stats: Array = [reload_timer.time_left, reload_timer.wait_time, is_reloading]
 	return reload_stats
+
+
+
+# Misc
+func get_pickup():
+	return pickup
 
 
 

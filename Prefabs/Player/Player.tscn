@@ -715,7 +715,7 @@ tracks/2/keys = {
 "values": [ 135.0 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 24 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -779,17 +779,14 @@ anims/idle-8 = SubResource( 28 )
 [node name="Weapon" type="Node2D" parent="Torso"]
 position = Vector2( 0, -13 )
 script = ExtResource( 99 )
+inventory_size = 5
 
 [node name="Inventory" type="Node2D" parent="Torso/Weapon"]
 rotation = 1.5708
 
 [node name="SimpleGun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-position = Vector2( 0, 0 )
-rotation = 0.0
 
 [node name="SimpleLMG" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-position = Vector2( 0, 0 )
-rotation = 0.0
 max_spread = 10.0
 spread_increase = 0.75
 ammo = 150
@@ -803,13 +800,11 @@ new_cam_shake = 75
 cam_shake_limit = 750
 
 [node name="SimpleShotgun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-position = Vector2( 0, 0 )
-rotation = 0.0
-bullets = 5
-max_spread = 25.0
-spread_increase = 5.0
+bullets = 24
+max_spread = 75.0
+spread_increase = 50.0
 spread_decrease = 1.0
-ammo = 12
+ammo = 2
 closed_bolt = false
 reload_speed = 1.5
 full_reload_speed = 2.0
@@ -817,6 +812,17 @@ heat_decrease = 0.05
 heat_cooldown = 2.0
 automatic = false
 firerate_cooldown = 0.05
+new_cam_shake = 100
+cam_shake_limit = 800
+cam_shake_time = 0.1
+
+[node name="SimplePistol" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
+max_spread = 2.0
+ammo = 12
+reload_speed = 1.0
+full_reload_speed = 1.5
+automatic = false
+firerate_cooldown = 0.02
 new_cam_shake = 100
 cam_shake_limit = 800
 cam_shake_time = 0.1

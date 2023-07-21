@@ -92,6 +92,7 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource( 1 )
 godmode = true
+i_frames = 0.05
 team = 1
 animplayer_path = NodePath("../Anims")
 damage_animation = "Damage"
