@@ -97,10 +97,10 @@
 [ext_resource path="res://Sprites/Player/Torso/Rifle/0002.png" type="Texture" id=95]
 [ext_resource path="res://Sprites/Player/Torso/Rifle/0197.png" type="Texture" id=96]
 [ext_resource path="res://Scripts/Player/PlayerTorso.gd" type="Script" id=97]
-[ext_resource path="res://Scripts/Weapons/Guns/SimpleGun.gd" type="Script" id=98]
+[ext_resource path="res://Prefabs/Weapons/Guns/Simple/SimpleGun.tscn" type="PackedScene" id=98]
 [ext_resource path="res://Scripts/Player/PlayerWeaponHandler.gd" type="Script" id=99]
-[ext_resource path="res://Prefabs/Weapons/Projectiles/Bullet.tscn" type="PackedScene" id=100]
 [ext_resource path="res://Scripts/Utility/Hitbox.gd" type="Script" id=101]
+[ext_resource path="res://Sprites/UI/Wheel_icon.png" type="Texture" id=102]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 4.5 )
@@ -416,7 +416,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -45 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -457,7 +457,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -45 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -498,7 +498,7 @@ tracks/1/keys = {
 "values": [ Vector2( 5, -52 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -539,7 +539,7 @@ tracks/1/keys = {
 "values": [ Vector2( 3, -53 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -580,7 +580,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, -52 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -621,7 +621,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -52 ), Vector2( 0, -51 ), Vector2( 0, -52 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -662,7 +662,7 @@ tracks/1/keys = {
 "values": [ Vector2( -6, -55 ), Vector2( -5, -55 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -703,7 +703,7 @@ tracks/1/keys = {
 "values": [ Vector2( -2, -49 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Weapon/SimpleGun:rotation_degrees")
+tracks/2/path = NodePath("Weapon/Inventory:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -722,12 +722,12 @@ script = ExtResource( 24 )
 position = Vector2( 0, 10.5 )
 shape = SubResource( 1 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Entity" type="Area2D" parent="."]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 101 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
 position = Vector2( 0, -10 )
 shape = SubResource( 2 )
 
@@ -780,22 +780,46 @@ anims/idle-8 = SubResource( 28 )
 position = Vector2( 0, -13 )
 script = ExtResource( 99 )
 
-[node name="SimpleGun" type="Node2D" parent="Torso/Weapon" groups=["Guns"]]
+[node name="Inventory" type="Node2D" parent="Torso/Weapon"]
 rotation = 1.5708
-script = ExtResource( 98 )
-projectile = ExtResource( 100 )
 
-[node name="Muzzle" type="Position2D" parent="Torso/Weapon/SimpleGun"]
-position = Vector2( 18, 0 )
+[node name="SimpleGun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
+position = Vector2( 0, 0 )
+rotation = 0.0
 
-[node name="Reload_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
-one_shot = true
+[node name="SimpleLMG" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
+position = Vector2( 0, 0 )
+rotation = 0.0
+max_spread = 10.0
+spread_increase = 0.75
+ammo = 150
+reload_speed = 2.5
+full_reload_speed = 5.0
+heat = true
+heat_decrease = 0.05
+heat_cooldown = 2.0
+firerate_cooldown = 0.15
+new_cam_shake = 75
+cam_shake_limit = 750
 
-[node name="Heat_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
-one_shot = true
-
-[node name="Firerate_timer" type="Timer" parent="Torso/Weapon/SimpleGun"]
-one_shot = true
+[node name="SimpleShotgun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
+position = Vector2( 0, 0 )
+rotation = 0.0
+bullets = 5
+max_spread = 25.0
+spread_increase = 5.0
+spread_decrease = 1.0
+ammo = 12
+closed_bolt = false
+reload_speed = 1.5
+full_reload_speed = 2.0
+heat_decrease = 0.05
+heat_cooldown = 2.0
+automatic = false
+firerate_cooldown = 0.05
+new_cam_shake = 100
+cam_shake_limit = 800
+cam_shake_time = 0.1
 
 [node name="Bullet_couner" type="Label" parent="Torso/Weapon"]
 margin_left = -8.0
@@ -804,3 +828,14 @@ margin_right = 8.0
 margin_bottom = 43.0
 text = "31"
 align = 1
+valign = 1
+
+[node name="Reload_progress" type="TextureProgress" parent="Torso/Weapon"]
+margin_left = -16.0
+margin_top = 29.0
+margin_right = -8.0
+margin_bottom = 37.0
+step = 0.01
+value = 100.0
+texture_progress = ExtResource( 102 )
+fill_mode = 4

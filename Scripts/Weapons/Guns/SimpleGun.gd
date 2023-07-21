@@ -25,6 +25,7 @@ export (bool) var closed_bolt: bool = true
 export (float) var reload_speed: int = 1.25
 export (float) var full_reload_speed: int = 4
 onready var reload_timer: Timer = $Reload_timer
+var is_reloading: bool = false
 
 # - Weapon heat
 export (bool) var heat: bool = false
@@ -70,6 +71,7 @@ func _ready():
 	heat_timer.wait_time = heat_cooldown
 	firerate_timer.wait_time = firerate_cooldown
 
+	is_reloading = false
 	current_ammo = ammo
 	if closed_bolt == true:
 		chambered_ammo = used_ammo
@@ -129,22 +131,29 @@ func fire():
 
 # Reloading
 func reload():
-	if current_ammo >= used_ammo:
-		reload_timer.wait_time = reload_speed
-		if closed_bolt == true:
-			chambered_ammo += used_ammo
-	else:
-		reload_timer.wait_time = full_reload_speed
+	if !(current_ammo >= ammo) and reload_timer.is_stopped():
+		if current_ammo >= used_ammo:
+			reload_timer.wait_time = reload_speed
+			if closed_bolt == true:
+				chambered_ammo += used_ammo
+		else:
+			reload_timer.wait_time = full_reload_speed
 
-	current_ammo = chambered_ammo
-	reload_timer.start()
+		current_ammo = chambered_ammo
+		is_reloading = true
+		reload_timer.start()
 
 func finish_reload():
 	current_ammo = ammo + chambered_ammo
+	is_reloading = false
 
 func get_ammo():
 	var ammo_stats: Array = [current_ammo, ammo]
 	return ammo_stats
+
+func get_reload_progress():
+	var reload_stats: Array = [reload_timer.time_left, reload_timer.wait_time, is_reloading]
+	return reload_stats
 
 
 

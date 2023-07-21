@@ -29,6 +29,7 @@ export (int, 2, 100) var times_ricochet: int = 4
 export (int) var speed: int = 500
 var velocity = Vector2.ZERO
 export (float) var dropoff_time: float = 10
+export (bool) var piercing: bool = false
 
 
 
@@ -84,7 +85,10 @@ func move(delta):
 func hit_body(body):
 	var fx_rot = rad2deg(global_position.angle_to_point(body.global_position))
 	body.handle_hit(damage, team, fx_rot)
-	if body.get_team() != team: call_deferred("queue_free")
+
+	if body.get_team() != team: 
+		if piercing == false:
+			call_deferred("queue_free")
 
 
 

@@ -4,7 +4,7 @@ class_name Player
 
 
 # Combat objects
-onready var hitbox = $Hitbox
+onready var hitbox = $Entity
 
 # Animations
 onready var anims = $Legs/Leg_anims

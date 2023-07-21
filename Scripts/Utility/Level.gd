@@ -5,7 +5,7 @@ extends Node2D
 onready var camera = $GameCamera
 
 # Containers
-onready var player_container = $Player_container
+onready var player_container = $Master/Player_container
 onready var bullet_container = $Bullet_container
 onready var fx_container
 
