@@ -26,7 +26,7 @@ func _process(delta):
 func animation_loop():
 	var animation: String
 
-	if Input.is_action_pressed("fire"):
+	if Input.is_action_pressed("fire") or Input.is_action_pressed("aim"):
 		return
 	else:
 		animation = "idle-" + String(player.current_angle)

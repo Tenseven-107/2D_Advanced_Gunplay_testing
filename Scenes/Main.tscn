@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Utility/Level.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://Prefabs/Objects/Dummy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Weapons/Pickups/WeaponPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Utility/PickupsContainer.gd" type="Script" id=7]
+[ext_resource path="res://Prefabs/Weapons/Pickups/LMGPickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Weapons/Pickups/PistolPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/Weapons/Pickups/ShotgunPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/Weapons/Pickups/SMGPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Prefabs/Weapons/Pickups/RevolverPickup.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -58,6 +63,7 @@ script = ExtResource( 2 )
 [node name="Area" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Area"]
+z_index = -2
 tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
@@ -78,6 +84,22 @@ tile_data = PoolIntArray( -983072, 0, 0, -983071, 0, 0, -983070, 0, 0, -983069, 
 script = ExtResource( 7 )
 
 [node name="WeaponPickup" parent="Master/Objects/Pickups" instance=ExtResource( 6 )]
+position = Vector2( -231, -70 )
+
+[node name="WeaponPickup2" parent="Master/Objects/Pickups" instance=ExtResource( 8 )]
+position = Vector2( -199, -47 )
+
+[node name="WeaponPickup3" parent="Master/Objects/Pickups" instance=ExtResource( 9 )]
+position = Vector2( -230, -25 )
+
+[node name="WeaponPickup4" parent="Master/Objects/Pickups" instance=ExtResource( 10 )]
+position = Vector2( -199, -3 )
+
+[node name="WeaponPickup5" parent="Master/Objects/Pickups" instance=ExtResource( 11 )]
+position = Vector2( -229, 13 )
+
+[node name="WeaponPickup6" parent="Master/Objects/Pickups" instance=ExtResource( 12 )]
+position = Vector2( -198, 29 )
 
 [node name="Dummy" parent="Master/Objects" instance=ExtResource( 5 )]
 position = Vector2( 0, -97 )

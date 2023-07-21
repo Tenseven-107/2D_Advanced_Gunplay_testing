@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=133 format=2]
 
 [ext_resource path="res://Sprites/Player/Legs/0024.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Player/Legs/0025.png" type="Texture" id=2]
@@ -99,8 +99,11 @@
 [ext_resource path="res://Scripts/Player/PlayerTorso.gd" type="Script" id=97]
 [ext_resource path="res://Prefabs/Weapons/Guns/Simple/SimpleGun.tscn" type="PackedScene" id=98]
 [ext_resource path="res://Scripts/Player/PlayerWeaponHandler.gd" type="Script" id=99]
+[ext_resource path="res://Prefabs/Weapons/Guns/Simple/SimpleLMG.tscn" type="PackedScene" id=100]
 [ext_resource path="res://Scripts/Utility/Hitbox.gd" type="Script" id=101]
 [ext_resource path="res://Sprites/UI/Wheel_icon.png" type="Texture" id=102]
+[ext_resource path="res://Prefabs/Weapons/Guns/Simple/SimpleShotgun.tscn" type="PackedScene" id=103]
+[ext_resource path="res://Prefabs/Weapons/Guns/Simple/SimplePistol.tscn" type="PackedScene" id=104]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 4.5 )
@@ -715,6 +718,12 @@ tracks/2/keys = {
 "values": [ 135.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0, 0, 0, 1 )
+skew = Vector2( 0.5, 0 )
+shadow_size = 2
+shadow_offset = Vector2( 1.386, 0 )
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 24 )
 
@@ -779,59 +788,24 @@ anims/idle-8 = SubResource( 28 )
 [node name="Weapon" type="Node2D" parent="Torso"]
 position = Vector2( 0, -13 )
 script = ExtResource( 99 )
-inventory_size = 5
 
 [node name="Inventory" type="Node2D" parent="Torso/Weapon"]
 rotation = 1.5708
 
 [node name="SimpleGun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
 
-[node name="SimpleLMG" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-max_spread = 10.0
-spread_increase = 0.75
-ammo = 150
-reload_speed = 2.5
-full_reload_speed = 5.0
-heat = true
-heat_decrease = 0.05
-heat_cooldown = 2.0
-firerate_cooldown = 0.15
-new_cam_shake = 75
-cam_shake_limit = 750
+[node name="SimpleLMG" parent="Torso/Weapon/Inventory" instance=ExtResource( 100 )]
 
-[node name="SimpleShotgun" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-bullets = 24
-max_spread = 75.0
-spread_increase = 50.0
-spread_decrease = 1.0
-ammo = 2
-closed_bolt = false
-reload_speed = 1.5
-full_reload_speed = 2.0
-heat_decrease = 0.05
-heat_cooldown = 2.0
-automatic = false
-firerate_cooldown = 0.05
-new_cam_shake = 100
-cam_shake_limit = 800
-cam_shake_time = 0.1
+[node name="SimpleShotgun" parent="Torso/Weapon/Inventory" instance=ExtResource( 103 )]
 
-[node name="SimplePistol" parent="Torso/Weapon/Inventory" instance=ExtResource( 98 )]
-max_spread = 2.0
-ammo = 12
-reload_speed = 1.0
-full_reload_speed = 1.5
-automatic = false
-firerate_cooldown = 0.02
-new_cam_shake = 100
-cam_shake_limit = 800
-cam_shake_time = 0.1
+[node name="SimplePistol" parent="Torso/Weapon/Inventory" instance=ExtResource( 104 )]
 
 [node name="Bullet_couner" type="Label" parent="Torso/Weapon"]
 margin_left = -8.0
 margin_top = 29.0
 margin_right = 8.0
 margin_bottom = 43.0
+custom_styles/normal = SubResource( 29 )
 text = "31"
 align = 1
 valign = 1

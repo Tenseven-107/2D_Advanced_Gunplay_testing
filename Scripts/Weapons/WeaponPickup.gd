@@ -3,7 +3,10 @@ extends Area2D
 
 # Objects
 export (String) var weapon_path: String # To avoid errors, a path is used instead
+onready var collider = $Collider
 onready var label = $Label
+onready var anims = $AnimationPlayer
+onready var tween = $Tween
 
 # Utility
 var active: bool = false
@@ -14,8 +17,13 @@ var player: Player
 # Setup
 func _ready():
 	active = false
+
 	label.text = InputMap.get_action_list("interact")[0].as_text()
 	label.hide()
+
+	anims.play("Idle")
+	tween.interpolate_property(self, "scale", Vector2.ZERO, Vector2(1, 1), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.start()
 
 
 
@@ -41,7 +49,16 @@ func _process(delta):
 		if player.check_available() == true:
 			player.equip(load(weapon_path))
 
-			call_deferred("queue_free")
+			collider.disabled = true
+			active = false
+
+			tween.interpolate_property(self, "position", global_position, player.global_position, 0.25, 
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2.ZERO, 0.25,
+			Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+
+			tween.start()
+			tween.connect("tween_all_completed", self, "queue_free")
 
 
 

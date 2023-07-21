@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Prefabs/Weapons/Projectiles/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Weapons/Guns/SimpleGun.gd" type="Script" id=2]
+[ext_resource path="res://Prefabs/Weapons/Pickups/SMGPickup.tscn" type="PackedScene" id=3]
+
+[node name="SimpleSMG" type="Node2D" groups=["Guns"]]
+script = ExtResource( 2 )
+pickup = ExtResource( 3 )
+projectile = ExtResource( 1 )
+max_spread = 15.0
+ammo = 72
+closed_bolt = false
+heat = true
+firerate_cooldown = 0.025
+new_cam_shake = 25
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 18, 0 )
+
+[node name="Reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Heat_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Firerate_timer" type="Timer" parent="."]
+one_shot = true

@@ -68,7 +68,7 @@ func weapon_switching():
 
 
 func add_weapon(weapon: PackedScene):
-	if is_available() and (max_weapon_num + 1) < inventory_size:
+	if is_available() and (max_weapon_num + 1) >= inventory_size:
 		remove_weapon()
 
 	var instance = weapon.instance()
