@@ -24,6 +24,7 @@ var trail_active: bool = true
 
 # - Stats
 export (int) var damage: int = 25
+var team: int = 0
 export (int, 2, 100) var times_ricochet: int = 4
 export (int) var speed: int = 500
 var velocity = Vector2.ZERO
@@ -82,8 +83,8 @@ func move(delta):
 # Hitting
 func hit_body(body):
 	var fx_rot = rad2deg(global_position.angle_to_point(body.global_position))
-	body.handle_hit(damage, fx_rot)
-	queue_free()
+	body.handle_hit(damage, team, fx_rot)
+	if body.get_team() != team: call_deferred("queue_free")
 
 
 
@@ -116,8 +117,10 @@ func destroy():
 
 
 # Initialization
-func initialize(bullet_cont, fx_cont):
-	self.container = bullet_cont
+func initialize(bullet_cont, new_team, fx_cont):
+	team = new_team
+
+	self.bullet_container = bullet_cont
 	self.fx_container = fx_cont
 
 

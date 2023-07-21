@@ -3,6 +3,9 @@ class_name SimpleGun
 
 
 # Stats
+# - Misc
+export (int) var team: int = 0
+
 # - Projectiles
 export (PackedScene) var projectile: PackedScene
 export (int) var bullets: int = 1
@@ -19,7 +22,8 @@ export (int) var ammo: int = 30
 export (int) var used_ammo: int = 1
 var current_ammo: int = 0
 export (bool) var closed_bolt: bool = true
-export (float) var reload_speed: int = 2
+export (float) var reload_speed: int = 1.25
+export (float) var full_reload_speed: int = 4
 onready var reload_timer: Timer = $Reload_timer
 
 # - Weapon heat
@@ -40,6 +44,23 @@ onready var firerate_timer: Timer = $Firerate_timer
 onready var muzzle = $Muzzle
 var bullet_container = null
 var fx_container = null
+
+# Juice
+# - Camera shake
+export (bool) var camera_shake: bool = true
+export (int) var new_cam_shake: int = 50
+export (int) var cam_shake_limit: int = 500
+export (float) var cam_shake_time: float = 0.05
+
+# - Camera zoom
+export (bool) var zoom: bool = false
+export (int) var new_cam_zoom: int = 1
+export (int) var cam_zoom_limit: int = 1
+export (float) var cam_zoom_time: float = 0.07
+
+# - Hitstop
+export (bool) var hitstop: bool = false
+export (float) var hitstop_time: float = 0.07
 
 
 
@@ -93,18 +114,27 @@ func fire():
 			muzzle.rotation_degrees = 0
 			muzzle.rotation_degrees += firing_spread
 
-			var fired_projectile: Node = projectile.instance()
+			var fired_projectile: Bullet = projectile.instance()
 			fired_projectile.global_position = muzzle.global_position
 			fired_projectile.global_rotation = muzzle.global_rotation
+			fired_projectile.initialize(bullet_container, team, fx_container)
 
 			bullet_container.call_deferred("add_child", fired_projectile)
+
+		if camera_shake: GlobalSignals.emit_signal("camera_shake", new_cam_shake, cam_shake_time, cam_shake_limit)
+		if zoom: GlobalSignals.emit_signal("camera_zoom", new_cam_zoom, cam_zoom_time, cam_zoom_limit)
+		if hitstop: GlobalSignals.emit_signal("hitstop", hitstop_time)
 
 
 
 # Reloading
 func reload():
-	if current_ammo >= used_ammo and closed_bolt == true:
-		chambered_ammo += used_ammo
+	if current_ammo >= used_ammo:
+		reload_timer.wait_time = reload_speed
+		if closed_bolt == true:
+			chambered_ammo += used_ammo
+	else:
+		reload_timer.wait_time = full_reload_speed
 
 	current_ammo = chambered_ammo
 	reload_timer.start()
